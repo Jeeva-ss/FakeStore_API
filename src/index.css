@@ -5,3 +5,18 @@ body {
 	font-family: "Fira Sans", sans-serif;
 	background: #f4f5ff;
 }
+
+.btn-back {
+	font-family: "Fira Sans", sans-serif;
+	font-weight: 500;
+}
+
+.about {
+	width: 50%;
+}
+
+@media screen and (max-width: 480px) {
+	.about {
+		width: 90%;
+	}
+}
