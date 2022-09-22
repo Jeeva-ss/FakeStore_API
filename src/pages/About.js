@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+
 export default function About() {
     const { id } = useParams();
     const url = "https://fakestoreapi.com/products/" + id;
     const { data: product, loading, error } = useFetch(url);
     const history = useHistory();
+
     useEffect(() => {
         if (error) {
             history.push("/");
@@ -15,6 +17,10 @@ export default function About() {
     const handleClick = () => {
         history.push("/");
     };
+
+    const queryString = useLocation().search;
+    const queryParams = new URLSearchParams(queryString);
+    const name = queryParams.get("name");
 
     return (
         <div
@@ -36,6 +42,7 @@ export default function About() {
                     <p>Category : {product.category}</p>
                     <p>Rating : {product.rating.rate}</p>
                     <p>Description : {product.description}</p>
+                    <p>{name}</p>
                     <button
                         className="btn-back"
                         onClick={handleClick}
